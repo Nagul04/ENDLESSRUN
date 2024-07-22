@@ -228,25 +228,9 @@ class GamePanel extends JPanel implements ActionListener {
     }
 
     private void spawnEnemies() {
-    enemySpawnCounter++;
-    
-    // Spawn new enemy if enough time has passed
-    if (enemySpawnCounter >= enemySpawnDelay) {
-        enemySpawnCounter = 0;
-        int type = rand.nextInt(2);
-        if (type == 0) {
-            enemies.add(new EnemyType1(rand.nextInt(800), rand.nextInt(600)));
-        } else {
-            enemies.add(new EnemyType2(rand.nextInt(800), rand.nextInt(600)));
-        }
-    }
-
-    // Check if all enemies are defeated to increase wave
-    if (enemies.isEmpty() && wave > 1) {
-        wave++;
-        enemySpawnDelay = Math.max(10, enemySpawnDelay - 10);
-        int enemiesToSpawn = wave * 2; // Spawn more enemies for the next wave
-        for (int i = 0; i < enemiesToSpawn; i++) {
+        enemySpawnCounter++;
+        if (enemySpawnCounter >= enemySpawnDelay) {
+            enemySpawnCounter = 0;
             int type = rand.nextInt(2);
             if (type == 0) {
                 enemies.add(new EnemyType1(rand.nextInt(800), rand.nextInt(600)));
@@ -254,8 +238,21 @@ class GamePanel extends JPanel implements ActionListener {
                 enemies.add(new EnemyType2(rand.nextInt(800), rand.nextInt(600)));
             }
         }
+
+        if (enemies.isEmpty()) {
+            wave++;
+            enemySpawnDelay = Math.max(10, enemySpawnDelay - 10);
+            int enemiesToSpawn = wave * 2;
+            for (int i = 0; i < enemiesToSpawn; i++) {
+                int type = rand.nextInt(2);
+                if (type == 0) {
+                    enemies.add(new EnemyType1(rand.nextInt(800), rand.nextInt(600)));
+                } else {
+                    enemies.add(new EnemyType2(rand.nextInt(800), rand.nextInt(600)));
+                }
+            }
+        }
     }
-}
 
     private void spawnMedikit() {
         medikitSpawnCounter++;
@@ -535,7 +532,7 @@ class GamePanel extends JPanel implements ActionListener {
         }
 
         private void loadImage() {
-            ImageIcon ii = new ImageIcon("C:/Users/nagul/OneDrive/Pictures/Screenshots/Screenshot (71).png"); // Replace with your medikit image path
+            ImageIcon ii = new ImageIcon("C:\\Users\\nagul\\OneDrive\\Pictures\\Screenshots\\medikit.png"); // Replace with your medikit image path
             image = ii.getImage();
         }
 
