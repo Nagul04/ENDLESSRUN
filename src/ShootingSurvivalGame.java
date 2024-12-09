@@ -282,7 +282,6 @@ class GamePanel extends JPanel implements ActionListener {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ShootingSurvivalGame.HIGH_SCORE_FILE))) {
             return ois.readInt();
         } catch (IOException e) {
-            // If file doesn't exist or there's an I/O error, return 0 as default high score
             return 0;
         }
     }
@@ -316,7 +315,8 @@ class GamePanel extends JPanel implements ActionListener {
         }
 
         private void loadImage() {
-            ImageIcon ii = new ImageIcon("C:\\Users\\nagul\\OneDrive\\Pictures\\img4.png"); // Replace with your image path
+            ImageIcon ii = new ImageIcon("C:\\Users\\nagul\\Downloads\\spaceshuttle.jpg");
+
             image = ii.getImage();
         }
 
@@ -460,7 +460,7 @@ class GamePanel extends JPanel implements ActionListener {
 
         @Override
         protected void loadImage() {
-            ImageIcon ii = new ImageIcon("C:/Users/nagul/OneDrive/Pictures/Screenshot (41).png"); // Replace with your image path
+            ImageIcon ii = new ImageIcon("C:\\Users\\nagul\\Downloads\\alienone.jpg");
             image = ii.getImage();
         }
     }
@@ -474,7 +474,7 @@ class GamePanel extends JPanel implements ActionListener {
 
         @Override
         protected void loadImage() {
-            ImageIcon ii = new ImageIcon("C:\\Users\\nagul\\OneDrive\\Pictures\\Screenshot (42).png"); // Replace with your image path
+            ImageIcon ii = new ImageIcon("C:\\Users\\nagul\\downloads\\alientwo.jpg"); 
             image = ii.getImage();
         }
     }
